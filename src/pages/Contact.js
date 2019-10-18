@@ -73,7 +73,7 @@ const Contact = () => {
         <Nav theme={theme} />
         <Container theme={theme}>
           <h1>Contact</h1>
-          <form action="https://formspree.io/myrnpkgx" method="POST">
+          <form action="" method="POST">
             <input type="text" placeholder="Name" name="Name" />
             <input type="email" placeholder="Email" name="Email" />
             <input type="date" name="Date Requested" />
