@@ -3,15 +3,19 @@ import Nav from '../components/Nav';
 import Layout from '../components/Layout/index';
 import { theme } from '../components/theme';
 import styled from 'styled-components';
+import bg from '../images/IMG_5483.jpg';
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 95vh;
+  min-height: 95vh;
   width: 100vw;
-
+  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
+    url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
   h1 {
     font-size: 6rem;
     color: ${props => props.theme.white};
@@ -71,7 +75,7 @@ const Contact = () => {
     <Layout theme={theme}>
       <div>
         <Nav theme={theme} />
-        <Container theme={theme}>
+        <Container theme={theme} bg={bg}>
           <h1>Contact</h1>
           <form action="" method="POST">
             <input type="text" placeholder="Name" name="Name" />

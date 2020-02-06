@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import styled, { createGlobalStyle } from 'styled-components';
-import bg from '../../images/leo-wieling-Sby_GQz1-5E-unsplash.jpg';
 import { theme } from '../theme';
 const GlobalStyle = createGlobalStyle`
 html{
@@ -45,13 +44,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-items: center;
   align-content: center;
-  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
-    url(${props => props.bg});
-  background-size: cover;
-  background-repeat: no-repeat;
-  div {
-    width: 100%;
-  }
 `;
 
 function Layout({ children }, props) {
@@ -74,9 +66,7 @@ function Layout({ children }, props) {
             <html lang="en" />
           </Helmet>
 
-          <Container bg={bg} theme={theme}>
-            {children}
-          </Container>
+          <Container theme={theme}>{children}</Container>
         </>
       )}
     />

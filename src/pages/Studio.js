@@ -5,6 +5,8 @@ import { theme } from '../components/theme';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import MediaWrapper from '../components/MediaWrapper';
+import bg from '../images/IMG_5483.jpg';
+
 const Container = styled.section`
   display: flex;
   flex-direction: column;
@@ -12,7 +14,10 @@ const Container = styled.section`
   justify-content: center;
   min-height: 95vh;
   width: 100vw;
-
+  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
+    url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
   h1 {
     font-size: 6rem;
     color: ${props => props.theme.white};
@@ -22,17 +27,28 @@ const Container = styled.section`
     font-size: 3rem;
     color: ${props => props.theme.white};
   }
-  div {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .description {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     color: ${props => props.theme.white};
-
-    width: 80%;
+    width: 100%;
+    padding: 2rem;
+    text-align: left;
     p {
-      font-size: 1.5rem;
+      width: 100%;
+      font-size: 2rem;
       max-width: 960px;
+    }
+    ul {
+      width: 100%;
+      font-size: 1.5rem;
     }
   }
   @media (max-width: 769px) {
@@ -55,16 +71,19 @@ const Studio = () => {
         return (
           <Layout theme={theme}>
             <Nav theme={theme} />
-            <Container theme={theme}>
+            <Container theme={theme} bg={bg}>
               <h1>{data.contentfulStudio.title}</h1>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html:
-                    data.contentfulStudio.studioDescription.childMarkdownRemark
-                      .html,
-                }}
-              />
-              <MediaWrapper images={data.contentfulStudio.images} />
+              <div className="grid">
+                <div
+                  className="description"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      data.contentfulStudio.studioDescription
+                        .childMarkdownRemark.html,
+                  }}
+                />
+                <MediaWrapper images={data.contentfulStudio.images} />
+              </div>
             </Container>
           </Layout>
         );
@@ -92,6 +111,31 @@ const query = graphql`
         }
       }
       studioDescription {
+        childMarkdownRemark {
+          html
+        }
+      }
+      computer {
+        childMarkdownRemark {
+          html
+        }
+      }
+      interface {
+        childMarkdownRemark {
+          html
+        }
+      }
+      plugins {
+        childMarkdownRemark {
+          html
+        }
+      }
+      monitors {
+        childMarkdownRemark {
+          html
+        }
+      }
+      software {
         childMarkdownRemark {
           html
         }

@@ -5,6 +5,7 @@ import { theme } from '../components/theme';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import bg from '../images/IMG_5483.jpg';
 
 const Container = styled.section`
   display: flex;
@@ -13,8 +14,12 @@ const Container = styled.section`
   justify-content: center;
   min-height: 95vh;
   width: 100vw;
-
+  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
+    url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
   h1 {
+    justify-self: flex-start;
     font-size: 6rem;
     color: ${props => props.theme.white};
     margin: 0 auto;
@@ -36,9 +41,15 @@ const Container = styled.section`
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-decoration: none;
       p {
+        color: ${props => props.theme.white};
+
         font-size: 1.5rem;
         margin: 0 auto;
+        :hover {
+          color: #ff0000;
+        }
       }
     }
   }
@@ -71,43 +82,22 @@ const Portfolio = () => {
         return (
           <Layout theme={theme}>
             <Nav theme={theme} />
-            <Container theme={theme}>
+            <Container theme={theme} bg={bg}>
               <h1>{data.contentfulPortfolio.title}</h1>
               <div className="portfolioWrapper">
                 {data.contentfulPortfolio.portfolioItems.map((item, key) => {
                   return (
-                    <>
-                      <div className="item">
-                        <Img
-                          fluid={item.image.fluid}
-                          fadeIn
-                          style={{ maxWidth: '300px' }}
-                        ></Img>
-                        <p>{item.title}</p>
-                        <p>{item.artist}</p>
-                        <p>{item.role}</p>
-                      </div>
-                      <div className="item">
-                        <Img
-                          fluid={item.image.fluid}
-                          fadeIn
-                          style={{ maxWidth: '300px' }}
-                        ></Img>
-                        <p>{item.title}</p>
-                        <p>{item.artist}</p>
-                        <p>{item.role}</p>
-                      </div>{' '}
-                      <div className="item">
-                        <Img
-                          fluid={item.image.fluid}
-                          fadeIn
-                          style={{ maxWidth: '300px' }}
-                        ></Img>
-                        <p>{item.title}</p>
-                        <p>{item.artist}</p>
-                        <p>{item.role}</p>
-                      </div>
-                    </>
+                    <a href={item.link} className="item" key={key}>
+                      <Img
+                        fluid={item.image.fluid}
+                        fadeIn
+                        style={{ maxWidth: '300px' }}
+                      />
+
+                      <p>{item.title}</p>
+                      <p>{item.artist}</p>
+                      <p>{item.role}</p>
+                    </a>
                   );
                 })}
               </div>
@@ -128,6 +118,7 @@ const query = graphql`
         title
         role
         artist
+        link
         image {
           fluid {
             tracedSVG

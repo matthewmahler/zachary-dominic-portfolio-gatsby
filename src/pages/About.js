@@ -1,10 +1,11 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
+import ImageWrapper from '../components/ImageWrapper';
 import Nav from '../components/Nav';
 import Layout from '../components/Layout/index';
 import { theme } from '../components/theme';
+import bg from '../images/IMG_5483.jpg';
 
 const Container = styled.section`
   display: flex;
@@ -13,32 +14,34 @@ const Container = styled.section`
   justify-content: center;
   min-height: 95vh;
   width: 100vw;
-
+  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
+    url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
   h1 {
     font-size: 6rem;
     color: ${props => props.theme.white};
     margin: 1rem auto;
   }
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 4rem;
-    p {
-      width: 80%;
-      max-width: 960px;
-      font-size: 2rem;
-      color: ${props => props.theme.white};
+  article {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 4rem;
+      p {
+        width: 90%;
+        max-width: 960px;
+        font-size: 2rem;
+        color: ${props => props.theme.white};
+      }
     }
   }
-  .profileImages {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-  }
+
   @media (max-width: 769px) {
     h1 {
       font-size: 4rem;
@@ -64,26 +67,16 @@ const About = () => {
         return (
           <Layout theme={theme}>
             <Nav theme={theme} />
-            <Container theme={theme}>
+            <Container theme={theme} bg={bg}>
               <h1>{data.contentfulAbout.title}</h1>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: data.contentfulAbout.bio.childMarkdownRemark.html,
-                }}
-              />
-              <div className="profileImages">
-                {data.contentfulAbout.profileImages.map((img, key) => {
-                  return (
-                    <Img
-                      fluid={img.fluid}
-                      key={key}
-                      fadeIn
-                      style={{ width: '100%', height: '100%', margin: '1rem' }}
-                      imgStyle={{ borderRadius: '100rem' }}
-                    />
-                  );
-                })}
-              </div>
+              <article>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.contentfulAbout.bio.childMarkdownRemark.html,
+                  }}
+                />
+                <ImageWrapper data={data} />
+              </article>
             </Container>
           </Layout>
         );
@@ -104,6 +97,9 @@ const query = graphql`
         }
       }
       profileImages {
+        file {
+          url
+        }
         fluid {
           tracedSVG
           srcWebp

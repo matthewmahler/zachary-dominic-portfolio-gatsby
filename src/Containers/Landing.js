@@ -2,20 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import Logo from '../components/Logo';
 import { StaticQuery, graphql } from 'gatsby';
+import bg from '../images/IMG_5483.jpg';
 
 const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 95vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
   width: 100vw;
   position: relative;
-
+  background-image: url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   h2 {
-    margin-top: 10rem;
-    font-size: 3rem;
+    font-size: 4rem;
     color: ${props => props.theme.white};
+    text-shadow: 0px 4px 3px ${props => props.theme.white}99;
   }
   @media (max-width: 769px) {
     h2 {
@@ -38,9 +46,13 @@ const Landing = props => {
       query={query}
       render={data => {
         return (
-          <Container theme={props.theme}>
-            <Logo fluid={data.contentfulLanding.logo.fluid} />
-            <h2>{data.contentfulLanding.subtitle}</h2>
+          <Container bg={bg} theme={props.theme}>
+            <div>
+              <h2>{data.contentfulLanding.subtitle}</h2>
+            </div>
+            <div>
+              <h2>LOGO HERE LATER</h2>
+            </div>
           </Container>
         );
       }}
@@ -54,18 +66,6 @@ const query = graphql`
   query LandingQuery {
     contentfulLanding {
       subtitle
-      logo {
-        fluid {
-          tracedSVG
-          srcSetWebp
-          srcWebp
-          srcSet
-          src
-          sizes
-          base64
-          aspectRatio
-        }
-      }
     }
   }
 `;

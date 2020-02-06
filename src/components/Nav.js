@@ -42,6 +42,9 @@ const Container = styled.nav`
       a {
         color: ${props => props.theme.white};
         text-decoration: none;
+        :hover {
+          color: #ff0000;
+        }
       }
     }
   }
@@ -81,7 +84,7 @@ const Nav = props => {
           <Link to="About">About</Link>
         </li>
         <li>
-          <Link to="Portfolio">Portfolio</Link>
+          <Link to="Portfolio">Credits</Link>
         </li>
         <li>
           <Link to="Studio">Studio</Link>
