@@ -10,26 +10,31 @@ html{
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
+
+
     ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
 }
   
   h1, 
-    h2, 
-    h3{
-      font-family: "Trirong";
+  h2, 
+  h3{
+      font-family: "Cormorant SC";
       font-style: italic;
+      font-weight: bold;
     }
   body {
     margin:0;
-    font-family: "Montserrat";
+    font-family: "Raleway";
     
   }
   @media all and (max-width: 1200px) {
-    width: 100%
     html{
       margin: 0;
+      width: 100%
     }
     h1{
       font-family: "Trirong";
@@ -40,6 +45,7 @@ html{
 }
 `;
 const Container = styled.div`
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-items: center;

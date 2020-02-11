@@ -11,7 +11,7 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 95vh;
   width: 100vw;
   background-image: linear-gradient(to bottom, #040404aa, #040404cc),
@@ -23,6 +23,8 @@ const Container = styled.section`
     font-size: 6rem;
     color: ${props => props.theme.white};
     margin: 0 auto;
+    margin-bottom: 1rem;
+    border-bottom: 5px solid #1d8eb7;
   }
   h2 {
     font-size: 3rem;
@@ -48,7 +50,7 @@ const Container = styled.section`
         font-size: 1.5rem;
         margin: 0 auto;
         :hover {
-          color: #ff0000;
+          color: #1d8eb7;
         }
       }
     }

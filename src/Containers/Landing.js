@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../components/Logo';
 import { StaticQuery, graphql } from 'gatsby';
 import bg from '../images/IMG_5483.jpg';
 
@@ -24,6 +23,10 @@ const Container = styled.section`
     font-size: 4rem;
     color: ${props => props.theme.white};
     text-shadow: 0px 4px 3px ${props => props.theme.white}99;
+    span {
+      color: #1d8eb7;
+      text-shadow: 0px 4px 3px #1d8eb799;
+    }
   }
   @media (max-width: 769px) {
     h2 {
@@ -45,10 +48,21 @@ const Landing = props => {
     <StaticQuery
       query={query}
       render={data => {
+        const subTitle = data.contentfulLanding.subtitle.split('|');
         return (
           <Container bg={bg} theme={props.theme}>
             <div>
-              <h2>{data.contentfulLanding.subtitle}</h2>
+              <h2>
+                {subTitle.map((word, key) => {
+                  return (
+                    <>
+                      <span>| </span>
+                      {word}
+                      <span> |</span>
+                    </>
+                  );
+                })}
+              </h2>
             </div>
             <div>
               <h2>LOGO HERE LATER</h2>

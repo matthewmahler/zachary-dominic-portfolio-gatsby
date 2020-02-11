@@ -3,16 +3,16 @@ import Nav from '../components/Nav';
 import Layout from '../components/Layout/index';
 import { theme } from '../components/theme';
 import styled from 'styled-components';
-import bg from '../images/IMG_5483.jpg';
+import bg from '../images/DSC_7522.jpg';
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 95vh;
   width: 100vw;
-  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
+  background-image: linear-gradient(to bottom, #04040477, #04040499),
     url(${props => props.bg});
   background-size: cover;
   background-repeat: no-repeat;
@@ -20,6 +20,8 @@ const Container = styled.section`
     font-size: 6rem;
     color: ${props => props.theme.white};
     margin: 0 auto;
+    margin-bottom: 1rem;
+    border-bottom: 5px solid #1d8eb7;
   }
 
   form {
@@ -40,6 +42,7 @@ const Container = styled.section`
     }
     textarea {
       height: 30rem;
+      font-size: 1.5rem;
     }
     input[type='submit'] {
       border-radius: 1rem;
@@ -77,7 +80,7 @@ const Contact = () => {
         <Nav theme={theme} />
         <Container theme={theme} bg={bg}>
           <h1>Contact</h1>
-          <form action="" method="POST">
+          <form action="https://formspree.io/xqkqgdba" method="POST">
             <input type="text" placeholder="Name" name="Name" />
             <input type="email" placeholder="Email" name="Email" />
             <input type="date" name="Date Requested" />
