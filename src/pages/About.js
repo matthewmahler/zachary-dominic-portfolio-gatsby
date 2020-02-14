@@ -57,6 +57,10 @@ const Container = styled.section`
   }
 
   @media (max-width: 769px) {
+    article {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+    }
     h1 {
       font-size: 4rem;
     }

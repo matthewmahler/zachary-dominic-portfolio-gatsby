@@ -12,7 +12,8 @@ html{
     height: 100vh;
     min-width: 100%;
     min-height: 100%;
-
+    margin: 0;
+    padding: 0;
 
     ::-webkit-scrollbar {
     width: 0px;
@@ -34,6 +35,7 @@ html{
   @media all and (max-width: 1200px) {
     html{
       margin: 0;
+      padding: 0;
       width: 100%
     }
     h1{

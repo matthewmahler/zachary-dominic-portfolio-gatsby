@@ -95,6 +95,9 @@ const Container = styled.section`
   }
 
   @media (max-width: 769px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
     h1 {
       font-size: 4rem;
     }
