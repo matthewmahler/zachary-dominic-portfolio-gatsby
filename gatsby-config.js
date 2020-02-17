@@ -22,7 +22,7 @@ module.exports = {
         // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
         // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
         display: `standalone`,
-        icon: './src/images/Frame 1.png',
+        icon: './src/images/ZDrecordingslogoblack.png',
         include_favicon: true, // Include favicon
       },
     },

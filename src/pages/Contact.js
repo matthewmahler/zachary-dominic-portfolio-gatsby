@@ -3,19 +3,15 @@ import Nav from '../components/Nav';
 import Layout from '../components/Layout/index';
 import { theme } from '../components/theme';
 import styled from 'styled-components';
-import bg from '../images/DSC_7522.jpg';
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 95vh;
+  min-height: 90vh;
   width: 100vw;
-  background-image: linear-gradient(to bottom, #04040477, #04040499),
-    url(${props => props.bg});
-  background-size: cover;
-  background-repeat: no-repeat;
+
   h1 {
     font-size: 6rem;
     color: ${props => props.theme.white};
@@ -77,8 +73,7 @@ const Contact = () => {
   return (
     <Layout theme={theme}>
       <div>
-        <Nav theme={theme} />
-        <Container theme={theme} bg={bg}>
+        <Container theme={theme}>
           <h1>Contact</h1>
           <form action="https://formspree.io/xqkqgdba" method="POST">
             <input type="text" placeholder="Name" name="Name" />

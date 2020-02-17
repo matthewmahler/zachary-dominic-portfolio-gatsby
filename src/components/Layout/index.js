@@ -3,6 +3,11 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import styled, { createGlobalStyle } from 'styled-components';
 import { theme } from '../theme';
+import Nav from '../Nav';
+import Socials from '../Socials';
+
+import bg from '../../images/IMG_5483.jpg';
+
 const GlobalStyle = createGlobalStyle`
 html{
     overflow: scroll;
@@ -10,7 +15,7 @@ html{
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
-    min-width: 100%;
+    max-width: 100%;
     min-height: 100%;
     margin: 0;
     padding: 0;
@@ -52,6 +57,13 @@ const Container = styled.div`
   flex-direction: column;
   justify-items: center;
   align-content: center;
+  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
+    url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  .content {
+    flex: 1 0 auto;
+  }
 `;
 
 function Layout({ children }, props) {
@@ -74,7 +86,11 @@ function Layout({ children }, props) {
             <html lang="en" />
           </Helmet>
 
-          <Container theme={theme}>{children}</Container>
+          <Container theme={theme} bg={bg}>
+            <Nav theme={theme} />
+            <div className="content">{children}</div>
+            <Socials />
+          </Container>
         </>
       )}
     />

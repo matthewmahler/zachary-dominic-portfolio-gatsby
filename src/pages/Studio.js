@@ -5,19 +5,15 @@ import { theme } from '../components/theme';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import MediaWrapper from '../components/MediaWrapper';
-import bg from '../images/IMG_5483.jpg';
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 95vh;
+  min-height: 90vh;
   width: 100vw;
-  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
-    url(${props => props.bg});
-  background-size: cover;
-  background-repeat: no-repeat;
+
   h1 {
     font-size: 6rem;
     color: ${props => props.theme.white};
@@ -51,6 +47,7 @@ const Container = styled.section`
           margin: 0 auto;
           width: 100%;
           font-size: 2rem;
+          text-align: center;
           max-width: 960px;
           padding-bottom: 1rem;
         }
@@ -58,17 +55,17 @@ const Container = styled.section`
       .gearGrid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         padding: 0 2rem;
         text-align: center;
-
+        margin-top: 2rem;
         color: ${props => props.theme.white};
 
         .col {
           width: 100%;
           .list {
             h3 {
-              font-size: 1.8rem;
+              font-size: 2rem;
 
               font-weight: bold;
               color: #1d8eb7;
@@ -116,8 +113,7 @@ const Studio = () => {
       render={data => {
         return (
           <Layout theme={theme}>
-            <Nav theme={theme} />
-            <Container theme={theme} bg={bg}>
+            <Container theme={theme}>
               <h1>{data.contentfulStudio.title}</h1>
               <div className="grid">
                 <div className="textContainer">

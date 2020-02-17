@@ -5,19 +5,15 @@ import { theme } from '../components/theme';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import bg from '../images/IMG_5483.jpg';
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 95vh;
+  min-height: 90vh;
   width: 100vw;
-  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
-    url(${props => props.bg});
-  background-size: cover;
-  background-repeat: no-repeat;
+
   h1 {
     justify-self: flex-start;
     font-size: 6rem;
@@ -39,11 +35,19 @@ const Container = styled.section`
     justify-content: center;
     color: ${props => props.theme.white};
     .item {
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-decoration: none;
+      .albumCover {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
       p {
         color: ${props => props.theme.white};
 
@@ -83,8 +87,7 @@ const Portfolio = () => {
       render={data => {
         return (
           <Layout theme={theme}>
-            <Nav theme={theme} />
-            <Container theme={theme} bg={bg}>
+            <Container theme={theme}>
               <h1>{data.contentfulPortfolio.title}</h1>
               <div className="portfolioWrapper">
                 {data.contentfulPortfolio.portfolioItems.map((item, key) => {
@@ -93,7 +96,7 @@ const Portfolio = () => {
                       <Img
                         fluid={item.image.fluid}
                         fadeIn
-                        style={{ maxWidth: '300px' }}
+                        className="albumCover"
                       />
 
                       <p>{item.title}</p>

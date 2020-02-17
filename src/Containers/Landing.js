@@ -1,48 +1,54 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
-import bg from '../images/IMG_5483.jpg';
 import Img from 'gatsby-image';
-import img1 from '../images/ZDrecordingslogoblack.png';
-
-import img2 from '../images/ZDrecordingslogoblue.png';
-import img3 from '../images/ZDrecordingslogowhite.png';
 
 const Container = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 95vh;
+  align-items: center;
+  justify-items: center;
+  height: 90vh;
   width: 100vw;
   position: relative;
-  background-image: url(${props => props.bg});
-  background-size: cover;
-  background-repeat: no-repeat;
+
   div {
-    height: 100%;
+    box-sizing: border-box;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 0;
     h2 {
       font-size: 4rem;
       color: ${props => props.theme.white};
       text-shadow: 0px 4px 3px #1d8eb799;
+      margin: 0 auto;
       span {
         color: #1d8eb7;
         text-shadow: 0px 4px 3px #1d8eb799;
       }
     }
     img {
-      max-width: 40vw;
       filter: drop-shadow(3px 5px 3px #1d8eb7);
+      margin: 0 auto;
     }
+  }
+  .logo {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   @media (max-width: 769px) {
     grid-template-columns: 1fr;
     .subtitle {
       display: none;
+    }
+    .logo {
+      width: 300px;
     }
     div {
       height: auto;
@@ -72,9 +78,9 @@ const Landing = props => {
     <StaticQuery
       query={query}
       render={data => {
-        const subTitle = data.contentfulLanding.subtitle.split('|');
+        const subTitle = data.contentfulLanding.subtitle.split(' ');
         return (
-          <Container bg={bg} theme={props.theme}>
+          <Container theme={props.theme}>
             <div className="subtitle">
               <h2>
                 {subTitle.map((word, key) => {
@@ -88,14 +94,8 @@ const Landing = props => {
                 })}
               </h2>
             </div>
-            <div>
-              {/* <Img
-                fluid={data.contentfulLanding.logo.fluid}
-                fadeIn
-                style={{ width: '100%' }}
-                imgStyle={{ maxWidth: '50vw', height: 'auto' }}
-              /> */}
-              <img src={img1} />
+            <div className="logo">
+              <Img fluid={data.contentfulLanding.logo.fluid} fadeIn />
             </div>
           </Container>
         );

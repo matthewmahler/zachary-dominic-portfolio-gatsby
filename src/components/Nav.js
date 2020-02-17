@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import Socials from './Socials';
 
 const Container = styled.nav`
   width: 100vw;
   min-height: 5vh;
   display: grid;
-  grid-template-columns: 5fr 5fr;
+  grid-template-columns: 2fr 1fr;
   align-items: center;
   justify-content: center;
   background-color: ${props => props.theme.black};
@@ -33,12 +34,13 @@ const Container = styled.nav`
     }
   }
   ul {
+    padding: 0;
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin: 0 auto;
     li {
       display: inline;
@@ -54,9 +56,12 @@ const Container = styled.nav`
   @media (max-width: 769px) {
     grid-template-columns: 1fr 1fr;
     h1 {
+      margin-bottom: 0.5rem;
       font-size: 2.5rem;
     }
     ul {
+      margin-bottom: 0.5rem;
+
       font-size: 1.5rem;
       padding: 0;
     }
@@ -77,26 +82,28 @@ const Container = styled.nav`
 
 const Nav = props => {
   return (
-    <Container theme={props.theme}>
-      <h1>
-        <Link to="/">Zachary J. Dominic</Link>
-      </h1>
+    <>
+      <Container theme={props.theme}>
+        <h1>
+          <Link to="/">Zachary J. Dominic</Link>
+        </h1>
 
-      <ul>
-        <li>
-          <Link to="/About">About</Link>
-        </li>
-        <li>
-          <Link to="/Portfolio">Credits</Link>
-        </li>
-        <li>
-          <Link to="/Studio">Studio</Link>
-        </li>
-        <li>
-          <Link to="/Contact">Contact</Link>
-        </li>
-      </ul>
-    </Container>
+        <ul>
+          <li>
+            <Link to="/About">About</Link>
+          </li>
+          <li>
+            <Link to="/Portfolio">Credits</Link>
+          </li>
+          <li>
+            <Link to="/Studio">Studio</Link>
+          </li>
+          <li>
+            <Link to="/Contact">Contact</Link>
+          </li>
+        </ul>
+      </Container>
+    </>
   );
 };
 

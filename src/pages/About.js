@@ -2,22 +2,17 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import Nav from '../components/Nav';
 import Layout from '../components/Layout/index';
 import { theme } from '../components/theme';
-import bg from '../images/IMG_5483.jpg';
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 95vh;
+  min-height: 90vh;
   width: 100vw;
-  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
-    url(${props => props.bg});
-  background-size: cover;
-  background-repeat: no-repeat;
+
   h1 {
     font-size: 6rem;
     color: ${props => props.theme.white};
@@ -29,26 +24,36 @@ const Container = styled.section`
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     padding: 4rem;
-    p {
-      width: 100%;
-      font-size: 3rem;
-      color: white;
-    }
-    .about {
+    div {
+      width: 90%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      margin-bottom: 4rem;
-      p {
-        width: 90%;
-        max-width: 960px;
-        font-size: 1.5rem;
-        color: ${props => props.theme.white};
+      .about {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 4rem;
+        p {
+          width: 90%;
+          max-width: 960px;
+          font-size: 1.8rem;
+          color: ${props => props.theme.white};
+        }
+      }
+      .logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 40%;
       }
     }
+
     .profilePic {
-      width: 80%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -59,15 +64,20 @@ const Container = styled.section`
   @media (max-width: 769px) {
     article {
       grid-template-columns: 1fr;
-      padding: 2rem;
-    }
-    h1 {
-      font-size: 4rem;
-    }
-    div {
-      margin-bottom: 2rem;
-      p {
-        font-size: 1.5rem;
+      padding: 0;
+      h1 {
+        font-size: 4rem;
+      }
+      div {
+        width: 100%;
+
+        margin-bottom: 2rem;
+        p {
+          font-size: 1.5rem;
+        }
+        .profilePic {
+          display: none;
+        }
       }
     }
   }
@@ -84,8 +94,7 @@ const About = () => {
       render={data => {
         return (
           <Layout theme={theme}>
-            <Nav theme={theme} />
-            <Container theme={theme} bg={bg}>
+            <Container theme={theme}>
               <h1>{data.contentfulAbout.title}</h1>
               <article>
                 <div>
@@ -95,7 +104,9 @@ const About = () => {
                       __html: data.contentfulAbout.bio.childMarkdownRemark.html,
                     }}
                   />
-                  <p>LOGO HERE LATER</p>
+                  <div className="logo">
+                    <Img fluid={data.contentfulLanding.logo.fluid} fadeIn />
+                  </div>
                 </div>
                 <div>
                   <Img
@@ -125,9 +136,6 @@ const query = graphql`
         }
       }
       profileImages {
-        file {
-          url
-        }
         fluid {
           tracedSVG
           srcWebp
@@ -137,6 +145,20 @@ const query = graphql`
           sizes
           base64
           aspectRatio
+        }
+      }
+    }
+    contentfulLanding {
+      logo {
+        fluid {
+          src
+          aspectRatio
+          base64
+          sizes
+          srcSet
+          srcSetWebp
+          srcWebp
+          tracedSVG
         }
       }
     }
