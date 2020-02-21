@@ -5,6 +5,7 @@ import { theme } from '../components/theme';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { useWindowSize } from '../Hooks/useWindowSize';
 
 const Container = styled.section`
   display: flex;
@@ -13,7 +14,10 @@ const Container = styled.section`
   justify-content: flex-start;
   min-height: 90vh;
   width: 100vw;
-
+  background-image: linear-gradient(to bottom, #04040488, #040404),
+    url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
   h1 {
     justify-self: flex-start;
     font-size: 6rem;
@@ -81,13 +85,22 @@ const Container = styled.section`
   }
 `;
 const Portfolio = () => {
+  let [width, height] = useWindowSize();
+
   return (
     <StaticQuery
       query={query}
       render={data => {
         return (
           <Layout theme={theme}>
-            <Container theme={theme}>
+            <Container
+              theme={theme}
+              bg={
+                width > height
+                  ? data.contentfulPortfolio.horizontalBackground.file.url
+                  : data.contentfulPortfolio.vertBackground.file.url
+              }
+            >
               <h1>{data.contentfulPortfolio.title}</h1>
               <div className="portfolioWrapper">
                 {data.contentfulPortfolio.portfolioItems.map((item, key) => {
@@ -138,6 +151,16 @@ const query = graphql`
         }
       }
       title
+      horizontalBackground {
+        file {
+          url
+        }
+      }
+      vertBackground {
+        file {
+          url
+        }
+      }
     }
   }
 `;

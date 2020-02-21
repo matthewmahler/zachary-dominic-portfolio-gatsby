@@ -11,7 +11,7 @@ const Container = styled.footer`
   flex-shrink: 0;
   min-height: 5vh;
   width: 100%;
-
+  background-color: #040404;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -25,7 +25,9 @@ const Container = styled.footer`
     }
   }
   @media (max-width: 769px) {
-    transform: scale(0.5);
+    a {
+      transform: scale(0.5);
+    }
   }
 
   @media (max-width: 425px) {

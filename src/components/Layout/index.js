@@ -6,8 +6,6 @@ import { theme } from '../theme';
 import Nav from '../Nav';
 import Socials from '../Socials';
 
-import bg from '../../images/IMG_5483.jpg';
-
 const GlobalStyle = createGlobalStyle`
 html{
     overflow: scroll;
@@ -57,10 +55,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-items: center;
   align-content: center;
-  background-image: linear-gradient(to bottom, #040404aa, #040404cc),
-    url(${props => props.bg});
-  background-size: cover;
-  background-repeat: no-repeat;
+
   .content {
     flex: 1 0 auto;
   }
@@ -86,7 +81,7 @@ function Layout({ children }, props) {
             <html lang="en" />
           </Helmet>
 
-          <Container theme={theme} bg={bg}>
+          <Container theme={theme}>
             <Nav theme={theme} />
             <div className="content">{children}</div>
             <Socials />

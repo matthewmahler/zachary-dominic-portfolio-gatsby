@@ -5,6 +5,7 @@ import { theme } from '../components/theme';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import MediaWrapper from '../components/MediaWrapper';
+import { useWindowSize } from '../Hooks/useWindowSize';
 
 const Container = styled.section`
   display: flex;
@@ -13,7 +14,10 @@ const Container = styled.section`
   justify-content: center;
   min-height: 90vh;
   width: 100vw;
-
+  background-image: linear-gradient(to bottom, #04040488, #040404),
+    url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
   h1 {
     font-size: 6rem;
     color: ${props => props.theme.white};
@@ -107,13 +111,22 @@ const Container = styled.section`
   }
 `;
 const Studio = () => {
+  let [width, height] = useWindowSize();
+
   return (
     <StaticQuery
       query={query}
       render={data => {
         return (
           <Layout theme={theme}>
-            <Container theme={theme}>
+            <Container
+              theme={theme}
+              bg={
+                width > height
+                  ? data.contentfulStudio.horizontalBackground.file.url
+                  : data.contentfulStudio.vertBackground.file.url
+              }
+            >
               <h1>{data.contentfulStudio.title}</h1>
               <div className="grid">
                 <div className="textContainer">
@@ -267,6 +280,16 @@ const query = graphql`
       mics {
         childMarkdownRemark {
           html
+        }
+      }
+      horizontalBackground {
+        file {
+          url
+        }
+      }
+      vertBackground {
+        file {
+          url
         }
       }
     }

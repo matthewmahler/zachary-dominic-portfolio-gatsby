@@ -1,8 +1,10 @@
 import React from 'react';
-import Nav from '../components/Nav';
+import { StaticQuery, graphql } from 'gatsby';
+
 import Layout from '../components/Layout/index';
 import { theme } from '../components/theme';
 import styled from 'styled-components';
+import { useWindowSize } from '../Hooks/useWindowSize';
 
 const Container = styled.section`
   display: flex;
@@ -11,7 +13,10 @@ const Container = styled.section`
   justify-content: flex-start;
   min-height: 90vh;
   width: 100vw;
-
+  background-image: linear-gradient(to bottom, #04040400, #040404),
+    url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
   h1 {
     font-size: 6rem;
     color: ${props => props.theme.white};
@@ -70,22 +75,54 @@ const Container = styled.section`
   }
 `;
 const Contact = () => {
+  let [width, height] = useWindowSize();
+
   return (
-    <Layout theme={theme}>
-      <div>
-        <Container theme={theme}>
-          <h1>Contact</h1>
-          <form action="https://formspree.io/xqkqgdba" method="POST">
-            <input type="text" placeholder="Name" name="Name" />
-            <input type="email" placeholder="Email" name="Email" />
-            <input type="date" name="Date Requested" />
-            <textarea placeholder="Message" name="Message" />
-            <input type="submit" value="Send" name="Send" />
-          </form>
-        </Container>
-      </div>
-    </Layout>
+    <StaticQuery
+      query={query}
+      render={data => {
+        return (
+          <Layout theme={theme}>
+            <div>
+              <Container
+                theme={theme}
+                bg={
+                  width > height
+                    ? data.contentfulContact.horizontalBackground.file.url
+                    : data.contentfulContact.vertBackground.file.url
+                }
+              >
+                <h1>Contact</h1>
+                <form action="https://formspree.io/xqkqgdba" method="POST">
+                  <input type="text" placeholder="Name" name="Name" />
+                  <input type="email" placeholder="Email" name="Email" />
+                  <input type="date" name="Date Requested" />
+                  <textarea placeholder="Message" name="Message" />
+                  <input type="submit" value="Send" name="Send" />
+                </form>
+              </Container>
+            </div>
+          </Layout>
+        );
+      }}
+    />
   );
 };
-
+const query = graphql`
+  query ContactQuery {
+    contentfulContact {
+      title
+      horizontalBackground {
+        file {
+          url
+        }
+      }
+      vertBackground {
+        file {
+          url
+        }
+      }
+    }
+  }
+`;
 export default Contact;

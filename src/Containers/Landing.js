@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { useWindowSize } from '../Hooks/useWindowSize';
 
 const Container = styled.section`
   display: grid;
@@ -11,7 +12,10 @@ const Container = styled.section`
   height: 90vh;
   width: 100vw;
   position: relative;
-
+  background-image: linear-gradient(to bottom, #04040400, #040404),
+    url(${props => props.bg});
+  background-size: cover;
+  background-repeat: no-repeat;
   div {
     box-sizing: border-box;
     width: 100%;
@@ -74,13 +78,22 @@ const Container = styled.section`
   }
 `;
 const Landing = props => {
+  let [width, height] = useWindowSize();
+
   return (
     <StaticQuery
       query={query}
       render={data => {
         const subTitle = data.contentfulLanding.subtitle.split(' ');
         return (
-          <Container theme={props.theme}>
+          <Container
+            theme={props.theme}
+            bg={
+              width > height
+                ? data.contentfulLanding.horizontalBackground.file.url
+                : data.contentfulLanding.vertBackground.file.url
+            }
+          >
             <div className="subtitle">
               <h2>
                 {subTitle.map((word, key) => {
@@ -122,6 +135,16 @@ const query = graphql`
         }
       }
       subtitle
+      horizontalBackground {
+        file {
+          url
+        }
+      }
+      vertBackground {
+        file {
+          url
+        }
+      }
     }
   }
 `;
