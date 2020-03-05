@@ -22,8 +22,7 @@ const Container = styled.section`
     justify-self: flex-start;
     font-size: 6rem;
     color: ${props => props.theme.white};
-    margin: 0 auto;
-    margin-bottom: 1rem;
+    margin: 1rem auto;
     border-bottom: 5px solid #1d8eb7;
   }
   h2 {
@@ -45,6 +44,7 @@ const Container = styled.section`
       align-items: center;
       justify-content: center;
       text-decoration: none;
+      margin: 1rem 0;
       .albumCover {
         width: 80%;
         display: flex;
@@ -55,7 +55,8 @@ const Container = styled.section`
       p {
         color: ${props => props.theme.white};
 
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        padding: 0.2rem;
         margin: 0 auto;
         :hover {
           color: #1d8eb7;
@@ -105,7 +106,13 @@ const Portfolio = () => {
               <div className="portfolioWrapper">
                 {data.contentfulPortfolio.portfolioItems.map((item, key) => {
                   return (
-                    <a href={item.link} className="item" key={key}>
+                    <a
+                      href={item.link}
+                      className="item"
+                      key={key}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Img
                         fluid={item.image.fluid}
                         fadeIn

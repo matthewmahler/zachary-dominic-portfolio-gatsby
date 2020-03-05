@@ -12,7 +12,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 90vh;
+  min-height: 95vh;
   width: 100vw;
   background-image: linear-gradient(to bottom, #04040488, #040404),
     url(${props => props.bg});
@@ -21,8 +21,7 @@ const Container = styled.section`
   h1 {
     font-size: 6rem;
     color: ${props => props.theme.white};
-    margin: 0 auto;
-    margin-bottom: 1rem;
+    margin: 1rem auto;
     border-bottom: 5px solid #1d8eb7;
   }
   h2 {
@@ -59,6 +58,7 @@ const Container = styled.section`
       .gearGrid {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-gap: 0.5rem;
         font-size: 1.6rem;
         padding: 0 2rem;
         text-align: center;
@@ -105,7 +105,6 @@ const Container = styled.section`
     div {
       p {
         text-align: center;
-        font-size: 1.25rem;
       }
     }
   }
