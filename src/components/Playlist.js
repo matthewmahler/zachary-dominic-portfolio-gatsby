@@ -14,7 +14,6 @@ const Playlist = ({ songs, index }) => {
       <Player
         audioLists={songs}
         mode="full"
-        preload="auto"
         glassBg
         spaceBar
         defaultPosition={{ bottom: 0, left: 0 }}
