@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { useWindowSize } from '../Hooks/useWindowSize';
-import Playlist from '../components/Playlist';
+import PlaylistContainer from '../components/PlaylistContainer';
 
 const Container = styled.section`
   display: flex;
@@ -30,17 +30,24 @@ const Container = styled.section`
     font-size: 3rem;
     color: ${props => props.theme.white};
   }
+
   .portfolioWrapper {
-    width: 80%;
+    width: 90%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    height: 80vh;
-    overflow: scroll;
+    grid-template-columns: 1fr 2fr;
+
     grid-gap: 3rem;
 
     color: ${props => props.theme.white};
+    .albumCoverWrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 80vh;
+      overflow: scroll;
+    }
     div {
       width: 100%;
+      grid-gap: 3rem;
       .albumCover {
         width: 100%;
         display: flex;
@@ -83,10 +90,14 @@ const Container = styled.section`
   @media (max-width: 425px) {
     .portfolioWrapper {
       grid-template-columns: 1fr;
+      .albumCoverWrapper {
+        grid-template-columns: 1fr 1fr;
+        height: auto;
 
-      .item {
-        p {
-          font-size: 1.5rem;
+        .item {
+          p {
+            font-size: 1rem;
+          }
         }
       }
     }
@@ -94,7 +105,7 @@ const Container = styled.section`
 `;
 const Portfolio = () => {
   let [width, height] = useWindowSize();
-  const [songIndex, setSongIndex] = useState(0);
+
   const [canRender, setCanRender] = useState(false);
 
   useEffect(() => {
@@ -107,13 +118,10 @@ const Portfolio = () => {
       query={query}
       render={data => {
         let playlist = [];
-        data.contentfulPortfolio.portfolioItems.map(song => {
+        data.contentfulPortfolio.portfolioItems.map((item, key) => {
           return playlist.push({
-            cover: song.image.fluid.src,
-            name: song.song.title,
-            musicSrc: song.song.file.url,
-            singer: song.artist,
-            id: song.id,
+            src: item.song.file.url,
+            label: item.song.title,
           });
         });
 
@@ -129,35 +137,34 @@ const Portfolio = () => {
             >
               <h1>{data.contentfulPortfolio.title}</h1>
               <div className="portfolioWrapper">
-                {data.contentfulPortfolio.portfolioItems.map((item, key) => {
-                  return (
-                    <div key={key}>
-                      <span onClick={() => setSongIndex(key)}>
-                        <Img
-                          fluid={item.image.fluid}
-                          fadeIn
-                          className="albumCover"
-                        />
-                      </span>
-                      <a
-                        href={item.link}
-                        className="item"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <p>{item.title}</p>
-                        <p>{item.artist}</p>
-                        <p>{item.role}</p>
-                      </a>
-                    </div>
-                  );
-                })}
-              </div>
-              {playlist.length < 1 ? null : (
                 <div className="playlistWrapper">
-                  {canRender && <Playlist index={songIndex} songs={playlist} />}
+                  {canRender && <PlaylistContainer playlist={playlist} />}
                 </div>
-              )}
+                <div className="albumCoverWrapper">
+                  {data.contentfulPortfolio.portfolioItems.map((item, key) => {
+                    return (
+                      <div key={key}>
+                        <a
+                          href={item.link}
+                          className="item"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Img
+                            fluid={item.image.fluid}
+                            fadeIn
+                            className="albumCover"
+                          />
+
+                          <p>{item.title}</p>
+                          <p>{item.artist}</p>
+                          <p>{item.role}</p>
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </Container>
           </Layout>
         );
