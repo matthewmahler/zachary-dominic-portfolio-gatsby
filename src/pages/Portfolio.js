@@ -19,6 +19,7 @@ const Container = styled.section`
   background-size: cover;
   background-repeat: no-repeat;
   h1 {
+    background: transparent;
     justify-self: flex-start;
     font-size: 6rem;
     color: ${props => props.theme.white};
@@ -146,7 +147,9 @@ const Portfolio = () => {
                 })}
               </div>
               {playlist.length < 1 ? null : (
-                <Playlist index={songIndex} songs={playlist} />
+                <div className="playlistWrapper">
+                  <Playlist index={songIndex} songs={playlist} />
+                </div>
               )}
             </Container>
           </Layout>

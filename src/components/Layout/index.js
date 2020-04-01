@@ -32,6 +32,11 @@ html{
   body {
     margin:0;
     font-family: "Raleway";
+    @media (max-width: 425px) {
+      .react-jinke-music-player-main {
+      display: none !important;
+    }
+    }
     
   }
   @media all and (max-width: 1200px) {
