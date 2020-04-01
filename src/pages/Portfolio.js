@@ -95,6 +95,13 @@ const Container = styled.section`
 const Portfolio = () => {
   let [width, height] = useWindowSize();
   const [songIndex, setSongIndex] = useState(0);
+  const [canRender, setCanRender] = useState(false);
+
+  useEffect(() => {
+    if (document !== undefined) {
+      setCanRender(true);
+    }
+  }, []);
   return (
     <StaticQuery
       query={query}
@@ -148,7 +155,7 @@ const Portfolio = () => {
               </div>
               {playlist.length < 1 ? null : (
                 <div className="playlistWrapper">
-                  <Playlist index={songIndex} songs={playlist} />
+                  {canRender && <Playlist index={songIndex} songs={playlist} />}
                 </div>
               )}
             </Container>
