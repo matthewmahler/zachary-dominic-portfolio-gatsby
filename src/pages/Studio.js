@@ -1,5 +1,4 @@
 import React from 'react';
-import Nav from '../components/Nav';
 import Layout from '../components/Layout/index';
 import { theme } from '../components/theme';
 import styled from 'styled-components';

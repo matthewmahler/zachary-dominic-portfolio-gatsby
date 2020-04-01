@@ -17,7 +17,6 @@ html{
     min-height: 100%;
     margin: 0;
     padding: 0;
-
     ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
@@ -48,6 +47,10 @@ html{
     
   }
 }
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
 `;
 const Container = styled.div`
   width: 100vw;
@@ -61,7 +64,7 @@ const Container = styled.div`
   }
 `;
 
-function Layout({ children }, props) {
+function Layout({ children }) {
   return (
     <StaticQuery
       query={graphql`
@@ -83,7 +86,7 @@ function Layout({ children }, props) {
 
           <Container theme={theme}>
             <Nav theme={theme} />
-            <div className="content">{children}</div>
+            {children}
             <Socials />
           </Container>
         </>

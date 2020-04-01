@@ -12,7 +12,7 @@ const Container = styled.section`
   height: 90vh;
   width: 100vw;
   position: relative;
-  background-image: linear-gradient(to bottom, #04040400, #040404),
+  background-image: linear-gradient(to bottom, #04040400, #04040455, #040404),
     url(${props => props.bg});
   background-size: cover;
   background-repeat: no-repeat;
@@ -24,7 +24,7 @@ const Container = styled.section`
     align-items: center;
     justify-content: center;
     h2 {
-      font-size: 4rem;
+      font-size: 3.4rem;
       color: ${props => props.theme.white};
       text-shadow: 0px 4px 3px #1d8eb799;
       margin: 0 auto;
@@ -52,6 +52,8 @@ const Container = styled.section`
       display: none;
     }
     .logo {
+      margin-top: 10rem;
+
       width: 300px;
     }
     div {
@@ -67,6 +69,9 @@ const Container = styled.section`
 
   @media (max-width: 425px) {
     div {
+      .logo {
+        margin-top: 5rem;
+      }
       h2 {
         font-size: 2rem;
         color: ${props => props.theme.white};

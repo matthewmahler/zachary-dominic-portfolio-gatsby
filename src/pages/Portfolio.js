@@ -1,11 +1,11 @@
-import React from 'react';
-import Nav from '../components/Nav';
+import React, { useState } from 'react';
 import Layout from '../components/Layout/index';
 import { theme } from '../components/theme';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { useWindowSize } from '../Hooks/useWindowSize';
+import Playlist from '../components/Playlist';
 
 const Container = styled.section`
   display: flex;
@@ -32,34 +32,40 @@ const Container = styled.section`
   .portfolioWrapper {
     width: 80%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1rem;
-    align-items: center;
-    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 80vh;
+    overflow: scroll;
+    grid-gap: 3rem;
+
     color: ${props => props.theme.white};
-    .item {
+    div {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      margin: 1rem 0;
       .albumCover {
-        width: 80%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        cursor: pointer;
       }
-      p {
-        color: ${props => props.theme.white};
+      .item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-decoration: none;
+        margin: 1rem 0;
 
-        font-size: 1.8rem;
-        padding: 0.2rem;
-        margin: 0 auto;
-        :hover {
-          color: #1d8eb7;
+        p {
+          color: ${props => props.theme.white};
+
+          font-size: 1.8rem;
+          padding: 0.2rem;
+          margin: 0 auto;
+          :hover {
+            color: #1d8eb7;
+          }
         }
       }
     }
@@ -87,11 +93,22 @@ const Container = styled.section`
 `;
 const Portfolio = () => {
   let [width, height] = useWindowSize();
-
+  const [songIndex, setSongIndex] = useState(0);
   return (
     <StaticQuery
       query={query}
       render={data => {
+        let playlist = [];
+        data.contentfulPortfolio.portfolioItems.map(song => {
+          return playlist.push({
+            cover: song.image.fluid.src,
+            name: song.song.title,
+            musicSrc: song.song.file.url,
+            singer: song.artist,
+            id: song.id,
+          });
+        });
+
         return (
           <Layout theme={theme}>
             <Container
@@ -106,26 +123,31 @@ const Portfolio = () => {
               <div className="portfolioWrapper">
                 {data.contentfulPortfolio.portfolioItems.map((item, key) => {
                   return (
-                    <a
-                      href={item.link}
-                      className="item"
-                      key={key}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Img
-                        fluid={item.image.fluid}
-                        fadeIn
-                        className="albumCover"
-                      />
-
-                      <p>{item.title}</p>
-                      <p>{item.artist}</p>
-                      <p>{item.role}</p>
-                    </a>
+                    <div key={key}>
+                      <span onClick={() => setSongIndex(key)}>
+                        <Img
+                          fluid={item.image.fluid}
+                          fadeIn
+                          className="albumCover"
+                        />
+                      </span>
+                      <a
+                        href={item.link}
+                        className="item"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <p>{item.title}</p>
+                        <p>{item.artist}</p>
+                        <p>{item.role}</p>
+                      </a>
+                    </div>
                   );
                 })}
               </div>
+              {playlist.length < 1 ? null : (
+                <Playlist index={songIndex} songs={playlist} />
+              )}
             </Container>
           </Layout>
         );
@@ -140,10 +162,17 @@ const query = graphql`
   query PortfolioQuery {
     contentfulPortfolio {
       portfolioItems {
+        id
         title
         role
         artist
         link
+        song {
+          file {
+            url
+          }
+          title
+        }
         image {
           fluid {
             tracedSVG
