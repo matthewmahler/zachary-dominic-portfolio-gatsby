@@ -15,20 +15,20 @@ const Container = styled.section`
   min-height: 90vh;
   width: 100vw;
   background-image: linear-gradient(to bottom, #04040488, #040404),
-    url(${props => props.bg});
+    url(${(props) => props.bg});
   background-size: cover;
   background-repeat: no-repeat;
   h1 {
     background: transparent;
     justify-self: flex-start;
     font-size: 6rem;
-    color: ${props => props.theme.white};
+    color: ${(props) => props.theme.white};
     margin: 1rem auto;
     border-bottom: 5px solid #1d8eb7;
   }
   h2 {
     font-size: 3rem;
-    color: ${props => props.theme.white};
+    color: ${(props) => props.theme.white};
   }
 
   .portfolioWrapper {
@@ -38,7 +38,7 @@ const Container = styled.section`
 
     grid-gap: 3rem;
 
-    color: ${props => props.theme.white};
+    color: ${(props) => props.theme.white};
     .albumCoverWrapper {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -55,6 +55,7 @@ const Container = styled.section`
         align-items: center;
         justify-content: flex-start;
         cursor: pointer;
+        background-color: #eee;
       }
       .item {
         width: 100%;
@@ -66,8 +67,8 @@ const Container = styled.section`
         margin: 1rem 0;
 
         p {
-          color: ${props => props.theme.white};
-
+          color: ${(props) => props.theme.white};
+          text-align: center;
           font-size: 1.8rem;
           padding: 0.2rem;
           margin: 0 auto;
@@ -116,7 +117,7 @@ const Portfolio = () => {
   return (
     <StaticQuery
       query={query}
-      render={data => {
+      render={(data) => {
         let playlist = [];
         data.contentfulPortfolio.portfolioItems.map((item, key) => {
           return playlist.push({
@@ -158,6 +159,7 @@ const Portfolio = () => {
 
                           <p>{item.title}</p>
                           <p>{item.artist}</p>
+                          <p>{item.genre}</p>
                           <p>{item.role}</p>
                         </a>
                       </div>
@@ -183,6 +185,7 @@ const query = graphql`
         title
         role
         artist
+        genre
         link
         song {
           file {

@@ -14,9 +14,6 @@ class Playlist extends Component {
     const { tracks, currentTrack } = this.props;
     return (
       <aside className="media-playlist">
-        <header className="media-playlist-header">
-          <h3 className="media-playlist-title">Playlist</h3>
-        </header>
         <ul className="media-playlist-tracks">
           {tracks.map(track => (
             <li
