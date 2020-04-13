@@ -18,6 +18,9 @@ const Container = styled.section`
     url(${(props) => props.bg});
   background-size: cover;
   background-repeat: no-repeat;
+  p {
+    color: #eee;
+  }
   h1 {
     background: transparent;
     justify-self: flex-start;
@@ -89,6 +92,9 @@ const Container = styled.section`
     }
   }
   @media (max-width: 425px) {
+    p {
+      width: 90%;
+    }
     .portfolioWrapper {
       grid-template-columns: 1fr;
       .albumCoverWrapper {
@@ -167,6 +173,12 @@ const Portfolio = () => {
                   })}
                 </div>
               </div>
+              <p>
+                *This track is used with permission by IRA DEWITT and URM
+                Academy. The original production and mix were done by TED HEWITT
+                AND BILLY DECKER. This new mix is an unofficial version and not
+                on the actual release.*
+              </p>
             </Container>
           </Layout>
         );
