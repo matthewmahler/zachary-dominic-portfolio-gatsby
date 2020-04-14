@@ -19,6 +19,7 @@ const Container = styled.section`
   background-size: cover;
   background-repeat: no-repeat;
   p {
+    text-align: center;
     color: #eee;
   }
   h1 {
@@ -173,12 +174,7 @@ const Portfolio = () => {
                   })}
                 </div>
               </div>
-              <p>
-                *This track is used with permission by IRA DEWITT and URM
-                Academy. The original production and mix were done by TED HEWITT
-                AND BILLY DECKER. This new mix is an unofficial version and not
-                on the actual release.*
-              </p>
+              <p>{data.contentfulPortfolio.disclaimer}</p>
             </Container>
           </Layout>
         );
@@ -219,6 +215,7 @@ const query = graphql`
         }
       }
       title
+      disclaimer
       horizontalBackground {
         file {
           url

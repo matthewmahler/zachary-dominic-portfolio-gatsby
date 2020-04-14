@@ -36,21 +36,33 @@ const Container = styled.footer`
 const Socials = () => {
   return (
     <Container>
-      <a href="" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://www.facebook.com/zacharydominicrecordings/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FontAwesomeIcon
           icon={faFacebook}
           size="5x"
           style={{ color: '#3b5998' }}
         />
       </a>
-      <a href="" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://www.instagram.com/zacharydominicrecordings/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FontAwesomeIcon
           icon={faInstagram}
           size="5x"
           style={{ color: '#5851db' }}
         />
       </a>
-      <a href="" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://twitter.com/ZachRecordings"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FontAwesomeIcon
           icon={faTwitter}
           size="5x"
