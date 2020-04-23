@@ -8,7 +8,7 @@ import Socials from '../Socials';
 
 const GlobalStyle = createGlobalStyle`
 html{
-    overflow: scroll;
+    overflow-y: scroll;
     font-size: 62.5%; 
     box-sizing: border-box;
     width: 100vw;
@@ -32,7 +32,7 @@ html{
   body {
     margin:0;
     font-family: "Raleway";
-   
+    scrollbar-color: transparent transparent;
     
   }
   @media all and (max-width: 1200px) {
@@ -77,7 +77,7 @@ function Layout({ children }) {
           }
         }
       `}
-      render={data => (
+      render={(data) => (
         <>
           <GlobalStyle />
 

@@ -9,11 +9,11 @@ const Container = styled.section`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-items: center;
-  height: 90vh;
+  height: 85vh;
   width: 100vw;
   position: relative;
   background-image: linear-gradient(to bottom, #04040400, #04040455, #040404),
-    url(${props => props.bg});
+    url(${(props) => props.bg});
   background-size: cover;
   background-repeat: no-repeat;
   div {
@@ -25,7 +25,7 @@ const Container = styled.section`
     justify-content: center;
     h2 {
       font-size: 3.4rem;
-      color: ${props => props.theme.white};
+      color: ${(props) => props.theme.white};
       text-shadow: 0px 4px 3px #1d8eb799;
       margin: 0 auto;
       span {
@@ -62,7 +62,7 @@ const Container = styled.section`
 
       h2 {
         font-size: 2rem;
-        color: ${props => props.theme.white};
+        color: ${(props) => props.theme.white};
       }
     }
   }
@@ -74,7 +74,7 @@ const Container = styled.section`
       }
       h2 {
         font-size: 2rem;
-        color: ${props => props.theme.white};
+        color: ${(props) => props.theme.white};
       }
       img {
         max-width: 100%;
@@ -82,13 +82,13 @@ const Container = styled.section`
     }
   }
 `;
-const Landing = props => {
+const Landing = (props) => {
   let [width, height] = useWindowSize();
 
   return (
     <StaticQuery
       query={query}
-      render={data => {
+      render={(data) => {
         const subTitle = data.contentfulLanding.subtitle.split(' ');
         return (
           <Container

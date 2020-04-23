@@ -4,12 +4,12 @@ import { Link } from 'gatsby';
 
 const Container = styled.nav`
   width: 100vw;
-  min-height: 5vh;
+  height: 7vh;
   display: grid;
   grid-template-columns: 2fr 1fr;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.theme.black};
+  background-color: ${(props) => props.theme.black};
   position: sticky;
   z-index: 100;
   h1 {
@@ -25,7 +25,7 @@ const Container = styled.nav`
     padding-left: 2rem;
     height: 100%;
     a {
-      color: ${props => props.theme.white};
+      color: ${(props) => props.theme.white};
       text-decoration: none;
       :hover {
         color: #1d8eb7;
@@ -44,7 +44,7 @@ const Container = styled.nav`
     li {
       display: inline;
       a {
-        color: ${props => props.theme.white};
+        color: ${(props) => props.theme.white};
         text-decoration: none;
         :hover {
           color: #1d8eb7;
@@ -79,7 +79,7 @@ const Container = styled.nav`
   }
 `;
 
-const Nav = props => {
+const Nav = (props) => {
   return (
     <>
       <Container theme={props.theme}>

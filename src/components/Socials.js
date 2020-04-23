@@ -9,7 +9,7 @@ import {
 
 const Container = styled.footer`
   flex-shrink: 0;
-  min-height: 5vh;
+  height: 8vh;
   width: 100%;
   background-color: #040404;
   box-sizing: border-box;
