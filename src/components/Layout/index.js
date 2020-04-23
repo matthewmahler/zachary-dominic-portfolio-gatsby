@@ -1,10 +1,11 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import styled, { createGlobalStyle } from 'styled-components';
 import { theme } from '../theme';
 import Nav from '../Nav';
 import Socials from '../Socials';
+import SEO from '../SEO';
+import img from '../../images/ZDrecordingslogowhite.png';
 
 const GlobalStyle = createGlobalStyle`
 html{
@@ -79,11 +80,8 @@ function Layout({ children }) {
       `}
       render={(data) => (
         <>
+          <SEO image={{ src: img, width: 1080, height: 1080 }} />
           <GlobalStyle />
-
-          <Helmet title={data.site.siteMetadata.title}>
-            <html lang="en" />
-          </Helmet>
 
           <Container theme={theme}>
             <Nav theme={theme} />

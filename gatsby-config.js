@@ -7,7 +7,11 @@ const { spaceId, accessToken } = process.env;
 
 module.exports = {
   siteMetadata: {
-    title: 'Zachary J Dominic',
+    title: 'Zachary Dominic Recordings',
+    description:
+      'Zachary started his love of music back in elementary school, when he discovered drumroll…. the violin. This quickly turned into a passion of all thing’s music related.',
+    author: 'Matt Mahler',
+    siteUrl: 'https://zacharydominicrecordings.com/',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
