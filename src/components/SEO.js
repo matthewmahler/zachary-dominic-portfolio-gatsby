@@ -98,7 +98,7 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
-  title: 'Loyalty To Me',
+  title: 'ZD Recordings',
 };
 
 SEO.propTypes = {

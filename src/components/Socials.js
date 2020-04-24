@@ -59,7 +59,7 @@ const Socials = () => {
         />
       </a>
       <a
-        href="https://twitter.com/ZachRecordings"
+        href="https://twitter.com/ZDRecordings"
         target="_blank"
         rel="noopener noreferrer"
       >
