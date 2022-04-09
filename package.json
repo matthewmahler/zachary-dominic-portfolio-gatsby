@@ -34,7 +34,7 @@
     "gatsby-transformer-sharp": "^2.9.0",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "node-sass": "^4.0.0",
     "path": "^0.12.7",
     "react": "^17.0.1",
